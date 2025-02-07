@@ -1,3 +1,82 @@
-<h1>
-hallo
-<h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>House Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        label, input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>House Price Prediction</h2>
+    <form action="/predict" method="post">
+        <label for="crim">CRIM:</label>
+        <input type="text" name="crim" required>
+        
+        <label for="zn">ZN:</label>
+        <input type="text" name="zn" required>
+        
+        <label for="indus">INDUS:</label>
+        <input type="text" name="indus" required>
+        
+        <label for="chas">CHAS (0 or 1):</label>
+        <input type="text" name="chas" required>
+        
+        <label for="nox">NOX:</label>
+        <input type="text" name="nox" required>
+        
+        <label for="rm">RM:</label>
+        <input type="text" name="rm" required>
+        
+        <label for="age">AGE:</label>
+        <input type="text" name="age" required>
+        
+        <label for="dis">DIS:</label>
+        <input type="text" name="dis" required>
+        
+        <label for="rad">RAD:</label>
+        <input type="text" name="rad" required>
+        
+        <label for="tax">TAX:</label>
+        <input type="text" name="tax" required>
+        
+        <label for="ptratio">PTRATIO:</label>
+        <input type="text" name="ptratio" required>
+        
+        <label for="b">B:</label>
+        <input type="text" name="b" required>
+        
+        <label for="lstat">LSTAT:</label>
+        <input type="text" name="lstat" required>
+        
+        <button type="submit">Predict Price</button>
+    </form>
+    
+    {% if prediction_text %}
+    <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</body>
+</html>

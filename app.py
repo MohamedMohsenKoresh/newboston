@@ -44,5 +44,21 @@ def predict_api():
         print(f"Error during prediction: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        data = [float(x) for x in request.form.values()]
+        final_input = scaler.transform(np.array(data).reshape(1, -1))
+        print("Final input:", final_input)
+        
+        output = regmodel.predict(final_input)[0]
+        print("Prediction:", output)
+        
+        return render_template("home.html", prediction_text=f"The House price prediction is {output}")
+    except Exception as e:
+        print(f"Error during form prediction: {e}")
+        return render_template("home.html", prediction_text="Error occurred during prediction.")
+
 if __name__ == "__main__":
     app.run(debug=True)
+
